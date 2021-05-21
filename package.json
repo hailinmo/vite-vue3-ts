@@ -7,6 +7,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "ant-design-vue": "^2.1.6",
+    "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.44",
     "vue": "^3.0.5",
     "vue-router": "^4.0.8"
@@ -16,6 +18,7 @@
     "@typescript-eslint/parser": "^4.24.0",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vuedx/typescript-plugin-vue": "^0.6.3",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",

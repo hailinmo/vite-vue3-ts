@@ -1,17 +1,17 @@
 <template>
-  <el-container class="h-full">
-    <el-header height="50px" class="bg-gray-500">
+  <a-layout class="h-full">
+    <a-layout-header>
       <Header />
-    </el-header>
-    <el-container class="min-h-0">
-      <el-aside width="200px" class="bg-gray-200">
+    </a-layout-header>
+    <a-layout>
+      <a-layout-sider class="overflow-x-auto" width="256px">
         <Aside />
-      </el-aside>
-      <el-main>
+      </a-layout-sider>
+      <a-layout-content>
         <Main />
-      </el-main>
-    </el-container>
-  </el-container>
+      </a-layout-content>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script lang="ts">

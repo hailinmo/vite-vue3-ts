@@ -1,66 +1,82 @@
 <template>
-  <div class="overflow-auto overflow-x-hidden">
-    <el-menu
-      :unique-opened="true"
-      default-active="2"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-    >
-      <el-submenu index="1">
+  <a-menu
+    v-model:selectedKeys="selectedKeys"
+    v-model:openKeys="openKeys"
+    style="width: 256px"
+    mode="inline"
+    theme="dark"
+    @click="handleClick"
+  >
+    <a-sub-menu key="sub1" @titleClick="titleClick">
+      <template #title>
+        <span>
+          <span>Navigation One</span>
+        </span>
+      </template>
+      <a-menu-item-group key="g1">
         <template #title>
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
+          <span>Item 1</span>
         </template>
-        <el-menu-item-group>
-          <template #title>分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template #title>选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <template #title>导航二</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <template #title>导航三</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <template #title>导航四</template>
-      </el-menu-item>
-      <el-submenu index="5">
-        <template #title>
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <template #title>分组一</template>
-          <el-menu-item index="5-1">选项1</el-menu-item>
-          <el-menu-item index="5-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="5-3">选项3</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-    </el-menu>
-  </div>
+        <a-menu-item key="1">Option 1</a-menu-item>
+        <a-menu-item key="2">Option 2</a-menu-item>
+      </a-menu-item-group>
+      <a-menu-item-group key="g2" title="Item 2">
+        <a-menu-item key="3">Option 3</a-menu-item>
+        <a-menu-item key="4">Option 4</a-menu-item>
+      </a-menu-item-group>
+    </a-sub-menu>
+    <a-sub-menu key="sub2" @titleClick="titleClick">
+      <template #title>
+        <span>
+          <span>Navigation Two</span>
+        </span>
+      </template>
+      <a-menu-item key="5">Option 5</a-menu-item>
+      <a-menu-item key="6">Option 6</a-menu-item>
+      <a-sub-menu key="sub3" title="Submenu">
+        <a-menu-item key="7">Option 7</a-menu-item>
+        <a-menu-item key="8">Option 8</a-menu-item>
+      </a-sub-menu>
+    </a-sub-menu>
+    <a-sub-menu key="sub4">
+      <template #title>
+        <span>
+          <span>Navigation Three</span>
+        </span>
+      </template>
+      <a-menu-item key="9">Option 9</a-menu-item>
+      <a-menu-item key="10">Option 10</a-menu-item>
+      <a-menu-item key="11">Option 11</a-menu-item>
+      <a-menu-item key="12">Option 12</a-menu-item>
+    </a-sub-menu>
+  </a-menu>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, ref, watch } from 'vue'
 export default defineComponent({
   setup() {
-    return {}
+    const selectedKeys = ref<string[]>(['1'])
+    const openKeys = ref<string[]>(['sub1'])
+    const handleClick = (e: Event) => {
+      console.log('click', e)
+    }
+    const titleClick = (e: Event) => {
+      console.log('titleClick', e)
+    }
+    watch(
+      () => openKeys,
+      (val) => {
+        console.log('openKeys', val)
+      }
+    )
+    return {
+      selectedKeys,
+      openKeys,
+
+      handleClick,
+      titleClick,
+    }
   },
 })
 </script>
