@@ -3,10 +3,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, provide } from 'vue'
 export default defineComponent({
   name: 'App',
+  setup() {
+    provide('theme', 'dark')
+  },
 })
 </script>
 

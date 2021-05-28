@@ -20,6 +20,11 @@ const router = createRouter({
           path: '/database',
           component: () => import('@/views/database/index.vue'),
         },
+        {
+          name: 'count',
+          path: '/count',
+          component: () => import('@/views/count/index.vue'),
+        },
       ],
     },
   ],
