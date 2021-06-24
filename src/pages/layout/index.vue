@@ -1,21 +1,34 @@
 <template>
-  <a-layout class="h-full">
-    <a-layout-header>
+  <n-layout class="h-full">
+    <n-layout-header style="height: 60px" bordered>
       <Header />
-    </a-layout-header>
-    <a-layout>
-      <a-layout-sider class="overflow-x-auto" width="256px">
-        <Aside />
-      </a-layout-sider>
-      <a-layout-content>
+    </n-layout-header>
+    <n-layout position="absolute" style="top: 60px" has-sider>
+      <n-layout-sider
+        collapse-mode="width"
+        :native-scrollbar="false"
+        :collapsed-width="64"
+        :width="240"
+        :collapsed="collapsed"
+        bordered
+        show-trigger
+        @collapse="collapsed = true"
+        @expand="collapsed = false"
+      >
+        <Aside :collapsed="collapsed" />
+      </n-layout-sider>
+      <n-layout-content
+        content-style="padding: 16px;"
+        :native-scrollbar="false"
+      >
         <Main />
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+      </n-layout-content>
+    </n-layout>
+  </n-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Main from './main.vue'
 import Header from './header.vue'
 import Aside from './aside.vue'
@@ -27,7 +40,10 @@ export default defineComponent({
     Aside,
   },
   setup() {
-    return {}
+    const collapsed = ref<boolean>(false)
+    return {
+      collapsed,
+    }
   },
 })
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>{{ count }}</p>
-    <a-button @click="increase">增加</a-button>
-    <a-button :disabled="isStop" @click="reduce">减少</a-button>
+    <n-button @click="increase">增加</n-button>
+    <n-button :disabled="isStop" @click="reduce">减少</n-button>
   </div>
 </template>
 

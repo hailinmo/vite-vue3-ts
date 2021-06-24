@@ -1,13 +1,26 @@
 <template>
-  <router-view />
+  <n-config-provider
+    :locale="locale"
+    :date-locale="dateLocale"
+    :theme="theme"
+    class="h-full"
+  >
+    <router-view />
+  </n-config-provider>
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
+import { defineComponent } from 'vue'
+import useConfig from '@/uses/use-config'
 export default defineComponent({
   name: 'App',
   setup() {
-    provide('theme', 'dark')
+    const { dateLocale, locale, theme } = useConfig()
+    return {
+      dateLocale,
+      locale,
+      theme,
+    }
   },
 })
 </script>

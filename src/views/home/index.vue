@@ -2,16 +2,16 @@
   <div>
     <img alt="Vue logo" src="@/assets/logo.png" />
     <p ref="index" class="flex items-center">首页</p>
-    <p class="flex items-start">{{ theme }}</p>
-    <a-button @click="toLink">跳转</a-button>
+    <n-button @click="toLink">跳转</n-button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
+  name: 'Home',
   setup() {
     const index = ref(null)
     onMounted(() => {
@@ -26,9 +26,7 @@ export default defineComponent({
       router.push({ path: '/' })
     }
 
-    const theme = inject('theme', 'light')
-
-    return { toLink, theme, index }
+    return { toLink, index }
   },
 })
 </script>

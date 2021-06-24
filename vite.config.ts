@@ -1,5 +1,4 @@
 import { resolve } from 'path'
-import styleImport from 'vite-plugin-style-import'
 import vue from '@vitejs/plugin-vue'
 
 /**
@@ -16,43 +15,17 @@ const config = {
       },
     },
   },
-  plugins: [
-    vue(),
-    styleImport({
-      libs: [
-        {
-          libraryName: 'ant-design-vue',
-          esModule: true,
-          resolveStyle: (name) => {
-            return `ant-design-vue/es/${name}/style/index`
-          },
+  plugins: [vue()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue', 'vue-router'],
+          naive: ['naive-ui'],
         },
-        {
-          libraryName: 'antd',
-          esModule: true,
-          resolveStyle: (name) => {
-            return `antd/es/${name}/style/index`
-          },
-        },
-        {
-          libraryName: 'vant',
-          esModule: true,
-          resolveStyle: (name) => {
-            return `vant/es/${name}/style`
-          },
-        },
-        {
-          libraryName: 'element-plus',
-          resolveStyle: (name) => {
-            return `element-plus/lib/theme-chalk/${name}.css`
-          },
-          resolveComponent: (name) => {
-            return `element-plus/lib/${name}`
-          },
-        },
-      ],
-    }),
-  ],
+      },
+    },
+  },
 }
 
 export default config

@@ -1,81 +1,99 @@
 <template>
-  <a-menu
-    v-model:selectedKeys="selectedKeys"
-    v-model:openKeys="openKeys"
-    style="width: 256px"
-    mode="inline"
-    theme="dark"
-    @click="handleClick"
-  >
-    <a-sub-menu key="sub1" @titleClick="titleClick">
-      <template #title>
-        <span>
-          <span>Navigation One</span>
-        </span>
-      </template>
-      <a-menu-item-group key="g1">
-        <template #title>
-          <span>Item 1</span>
-        </template>
-        <a-menu-item key="1">Option 1</a-menu-item>
-        <a-menu-item key="2">Option 2</a-menu-item>
-      </a-menu-item-group>
-      <a-menu-item-group key="g2" title="Item 2">
-        <a-menu-item key="3">Option 3</a-menu-item>
-        <a-menu-item key="4">Option 4</a-menu-item>
-      </a-menu-item-group>
-    </a-sub-menu>
-    <a-sub-menu key="sub2" @titleClick="titleClick">
-      <template #title>
-        <span>
-          <span>Navigation Two</span>
-        </span>
-      </template>
-      <a-menu-item key="5">Option 5</a-menu-item>
-      <a-menu-item key="6">Option 6</a-menu-item>
-      <a-sub-menu key="sub3" title="Submenu">
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
-    </a-sub-menu>
-    <a-sub-menu key="sub4">
-      <template #title>
-        <span>
-          <span>Navigation Three</span>
-        </span>
-      </template>
-      <a-menu-item key="9">Option 9</a-menu-item>
-      <a-menu-item key="10">Option 10</a-menu-item>
-      <a-menu-item key="11">Option 11</a-menu-item>
-      <a-menu-item key="12">Option 12</a-menu-item>
-    </a-sub-menu>
-  </a-menu>
+  <n-menu
+    v-model:value="activeKey"
+    :collapsed="collapsed"
+    :collapsed-width="64"
+    :collapsed-icon-size="22"
+    :options="menuOptions"
+    @update:value="handleClick"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
-    const selectedKeys = ref<string[]>(['1'])
-    const openKeys = ref<string[]>(['sub1'])
-    const handleClick = (e: Event) => {
-      console.log('click', e)
+    const activeKey = ref<string>('')
+    const handleClick = (key: string) => {
+      activeKey.value = key
     }
-    const titleClick = (e: Event) => {
-      console.log('titleClick', e)
-    }
-    watch(
-      () => openKeys,
-      (val) => {
-        console.log('openKeys', val)
-      }
-    )
+    const menuOptions = [
+      {
+        label: '且听风吟',
+        key: 'hear-the-wind-sing',
+      },
+      {
+        label: '1973年的弹珠玩具',
+        key: 'pinball-1973',
+        disabled: true,
+        children: [
+          {
+            label: '鼠',
+            key: 'rat',
+          },
+        ],
+      },
+      {
+        label: '寻羊冒险记',
+        key: 'a-wild-sheep-chase',
+        disabled: true,
+      },
+      {
+        label: '舞，舞，舞',
+        key: 'dance-dance-dance',
+        children: [
+          {
+            type: 'group',
+            label: '人物',
+            key: 'people',
+            children: [
+              {
+                label: '叙事者',
+                key: 'narrator',
+              },
+              {
+                label: '羊男',
+                key: 'sheep-man',
+              },
+            ],
+          },
+          {
+            label: '饮品',
+            key: 'beverage',
+            children: [
+              {
+                label: '威士忌',
+                key: 'whisky',
+              },
+            ],
+          },
+          {
+            label: '食物',
+            key: 'food',
+            children: [
+              {
+                label: '三明治',
+                key: 'sandwich',
+              },
+            ],
+          },
+          {
+            label: '过去增多，未来减少',
+            key: 'the-past-increases-the-future-recedes',
+          },
+        ],
+      },
+    ]
     return {
-      selectedKeys,
-      openKeys,
-
+      activeKey,
+      menuOptions,
       handleClick,
-      titleClick,
     }
   },
 })
