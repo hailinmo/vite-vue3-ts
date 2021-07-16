@@ -6,8 +6,30 @@
 
 <script lang="ts">
 import { defineComponent, shallowRef } from 'vue'
-import data from './data.json'
-import data2 from './data2.json'
+const data = [
+  {
+    date: '2016-05-02',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1518 弄',
+  },
+  {
+    date: '2016-05-04',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1517 弄',
+  },
+]
+const data2 = [
+  {
+    date: '2016-05-05',
+    name: '王大虎',
+    address: '上海市普陀区金沙江路 1518 弄',
+  },
+  {
+    date: '2016-05-05',
+    name: '王大虎',
+    address: '上海市普陀区金沙江路 1517 弄',
+  },
+]
 export default defineComponent({
   name: 'DataBase',
   setup() {

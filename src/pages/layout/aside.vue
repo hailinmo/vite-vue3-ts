@@ -11,6 +11,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { menuRoutes } from '@/router/index'
+import { useRouter, useRoute } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import type { MenuOption } from 'naive-ui'
 export default defineComponent({
   props: {
     collapsed: {
@@ -19,77 +23,33 @@ export default defineComponent({
     },
   },
   setup() {
-    const activeKey = ref<string>('')
+    const activeKey = ref<string>('home')
+    const router = useRouter()
+    const route = useRoute()
+
+    activeKey.value = route.name?.toString() || 'home'
+
     const handleClick = (key: string) => {
       activeKey.value = key
+      router.push({ name: key })
     }
-    const menuOptions = [
-      {
-        label: '且听风吟',
-        key: 'hear-the-wind-sing',
-      },
-      {
-        label: '1973年的弹珠玩具',
-        key: 'pinball-1973',
-        disabled: true,
-        children: [
-          {
-            label: '鼠',
-            key: 'rat',
-          },
-        ],
-      },
-      {
-        label: '寻羊冒险记',
-        key: 'a-wild-sheep-chase',
-        disabled: true,
-      },
-      {
-        label: '舞，舞，舞',
-        key: 'dance-dance-dance',
-        children: [
-          {
-            type: 'group',
-            label: '人物',
-            key: 'people',
-            children: [
-              {
-                label: '叙事者',
-                key: 'narrator',
-              },
-              {
-                label: '羊男',
-                key: 'sheep-man',
-              },
-            ],
-          },
-          {
-            label: '饮品',
-            key: 'beverage',
-            children: [
-              {
-                label: '威士忌',
-                key: 'whisky',
-              },
-            ],
-          },
-          {
-            label: '食物',
-            key: 'food',
-            children: [
-              {
-                label: '三明治',
-                key: 'sandwich',
-              },
-            ],
-          },
-          {
-            label: '过去增多，未来减少',
-            key: 'the-past-increases-the-future-recedes',
-          },
-        ],
-      },
-    ]
+
+    const formatMenu = (routes: RouteRecordRaw[]): Array<MenuOption> => {
+      return routes.map((route) => {
+        const children = route.children
+        const item: MenuOption = {
+          label: route.meta?.title as string,
+          key: route.name as string,
+        }
+        if (children && children.length) {
+          item.children = formatMenu(children)
+        }
+        return item
+      })
+    }
+
+    const menuOptions = formatMenu(menuRoutes)
+
     return {
       activeKey,
       menuOptions,

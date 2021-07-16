@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+// import viteExample from './vite-plugin-example'
 
 /**
  * @type {import('vite').UserConfig}

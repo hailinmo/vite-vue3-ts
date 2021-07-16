@@ -1,6 +1,7 @@
 import { provide, reactive, ref, watch } from 'vue'
-import { zhCN, dateZhCN, NDateLocale, NLocale, darkTheme } from 'naive-ui'
-import { BuiltInGlobalTheme } from 'naive-ui/lib/themes/interface'
+import { zhCN, dateZhCN, darkTheme } from 'naive-ui'
+import type { NDateLocale, NLocale } from 'naive-ui'
+import type { BuiltInGlobalTheme } from 'naive-ui/lib/themes/interface'
 
 export interface IConfig {
   locale: string | null
