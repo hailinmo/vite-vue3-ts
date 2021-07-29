@@ -1,5 +1,7 @@
 import { resolve } from 'path'
+import WindiCSS from 'vite-plugin-windicss'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 // import viteExample from './vite-plugin-example'
 
 /**
@@ -15,8 +17,11 @@ const config = {
         javascriptEnabled: true,
       },
     },
+    modules: {
+      localsConvention: 'camelCaseOnly',
+    },
   },
-  plugins: [vue()],
+  plugins: [vue(), vueJsx(), WindiCSS()],
   build: {
     rollupOptions: {
       output: {

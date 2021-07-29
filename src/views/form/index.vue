@@ -1,66 +1,33 @@
 <template>
-  <div>
-    <n-card>
-      <n-form>
-        <n-form-item
-          label="飞机场的"
-          :validation-status="inputValidationStatus"
-          :feedback="inputFeedback"
-        >
-          <n-input v-model:value="inputValue" clearable />
-        </n-form-item>
-        <n-form-item
-          label="飞机场的"
-          :validation-status="inputNumberValidationStatus"
-          :feedback="inputNumberFeedback"
-        >
-          <n-input-number v-model:value="inputNumberValue" />
-        </n-form-item>
-        <n-form-item
-          label="飞机场的"
-          :validation-status="selectValidationStatus"
-          :feedback="selectFeedback"
-        >
-          <n-select
-            v-model:value="selectValue"
-            :options="selectOptions"
-            clearable
-          />
-        </n-form-item>
-      </n-form>
-    </n-card>
+  <div ref="countRef">
+    <div class="flex justify-between">
+      <div class="flex-1 min-w-0 break-words">test</div>
+      <div class="w-80 ml-2">test</div>
+    </div>
+    <Example />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, ref, watch } from 'vue'
+import { Example } from '@/components/index'
 export default defineComponent({
+  components: {
+    Example,
+  },
   setup() {
-    function createStatus(value: string) {
-      switch (value) {
-        case '10: 30':
-          return undefined
-        case '10: 29':
-          return 'warning'
-        default:
-          return 'error'
+    const countRef = ref(null)
+    watch(
+      countRef,
+      (value) => {
+        console.log(value)
+      },
+      {
+        flush: 'post',
       }
-    }
-
-    function createFeedback(value: string) {
-      switch (value) {
-        case '10: 30':
-          return '十点半的飞机已经到了'
-        case '10: 29':
-          return '虽然差不多了，请把时间调到 10: 30'
-        default:
-          return '请把时间调到 10: 30'
-      }
-    }
+    )
     return {
-      createStatus,
-      createFeedback,
+      countRef,
     }
   },
 })

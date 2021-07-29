@@ -48,6 +48,14 @@ const menuRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/table/index.vue'),
   },
   {
+    name: 'form',
+    path: '/form',
+    meta: {
+      title: '表单',
+    },
+    component: () => import('@/views/form/index.vue'),
+  },
+  {
     name: 'test',
     path: '/test',
     meta: {

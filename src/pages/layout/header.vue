@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
 import { PersonCircleOutline } from '@vicons/ionicons5'
-import { IConfig } from '@/uses/use-config'
+import { IConfig } from '@/uses/useConfig'
 export default defineComponent({
   components: {
     PersonCircleOutline,

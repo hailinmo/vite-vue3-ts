@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import useConfig from '@/uses/use-config'
+import useConfig from '@/uses/useConfig'
 import { GlobalThemeOverrides } from 'naive-ui'
 export default defineComponent({
   name: 'App',

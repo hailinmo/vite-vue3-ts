@@ -10,6 +10,7 @@ export default defineComponent({
       },
     },
   },
+  emits: ['-size'],
   setup(props) {
     return {
       registered: false,

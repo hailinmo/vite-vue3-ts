@@ -18,7 +18,7 @@
         "name": "@vuedx/typescript-plugin-vue"
       }
     ],
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"]
   },
   "exclude": ["node_modules", "dist", "public"],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

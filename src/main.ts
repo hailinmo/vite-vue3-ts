@@ -6,7 +6,7 @@ import naiveui from '@/components/naive-ui'
 import resize from '@/directive/resize'
 
 import './styles/index.less'
-import './styles/tailwind.css'
+import 'virtual:windi.css'
 
 const app = createApp(App)
 
